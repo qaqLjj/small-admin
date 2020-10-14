@@ -37,7 +37,7 @@
       @current-change="handleCurrentChange"
     />
 
-    <el-dialog :title="title" :visible.sync="dialogFormVisible">
+    <el-dialog :title="title" :visible.sync="dialogFormVisible" width="700px">
       <el-form :model="form">
         <el-form-item label="字段1" :label-width="formLabelWidth">
           <el-input v-model="form.filed1" autocomplete="off" />
@@ -74,7 +74,7 @@
 
 <script>
 // todo 在 src/api/table 里定义 getList 方法
-// import { getList } from '@/api/table'
+import { getList } from '@/api/table'
 
 export default {
   data() {
@@ -84,8 +84,9 @@ export default {
       pageSize: 20,
       totalPage: 100,
       form: {},
+      title: '',
       searchValue: '',
-      formLabelWidth: '200',
+      formLabelWidth: '55px',
       dialogFormVisible: false
     }
   },
@@ -122,9 +123,12 @@ export default {
       this.dialogFormVisible = true
     },
     getList() {
-      // this.list = getList().then((list) => {
-      //   this.list = list
-      // })
+      this.list = getList({
+        pageNum: this.pageNum,
+        pageSize: this.pageSize
+      }).then((list) => {
+        this.list = list
+      })
       this.list = [
         {
           date: '2020-1014',
@@ -190,5 +194,15 @@ export default {
   }
   float: left;
   width: 400px;
+}
+.el-form-item {
+  display: flex;
+  padding-right: 20px;
+  ::v-deep .el-form-item__label {
+    text-align: right;
+  }
+  ::v-deep .el-form-item__content{
+    flex: 1;
+  }
 }
 </style>

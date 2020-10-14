@@ -1,5 +1,6 @@
 import request from '@/utils/request'
 
+// @get
 export function getList(params) {
   return request({
     url: 'api/getList',
@@ -8,6 +9,7 @@ export function getList(params) {
   })
 }
 
+// @post
 export function add(data) {
   return request({
     url: 'api/add',
