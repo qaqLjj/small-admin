@@ -50,7 +50,7 @@
       @current-change="handleCurrentChange"
     />
 
-    <el-dialog :title="title" :visible.sync="dialogFormVisible" width="700px">
+    <el-dialog :title="title" :visible.sync="dialogFormVisible" width="700px" :close-on-click-modal="false">
       <el-form :model="form">
         <el-form-item label="姓名" :label-width="formLabelWidth">
           <el-input v-model="form.name" autocomplete="off" />
@@ -82,10 +82,8 @@
           </el-select>
         </el-form-item>
         <el-table-column class-name="status-col" label="是否到店" width="110" align="center">
-        <template slot-scope="scope">
           <el-tag :type="form.status | statusFilter">{{ form.status }}</el-tag>
-        </template>
-      </el-table-column>
+        </el-table-column>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
@@ -106,8 +104,8 @@ export default {
   filters: {
     statusFilter(status) {
       const statusMap = {
-        "1": 'success',
-        "0": 'danger'
+        '1': 'success',
+        '0': 'danger'
       }
       return statusMap[status]
     }
@@ -158,10 +156,10 @@ export default {
       this.dialogFormVisible = true
     },
     getList() {
-      this.list = getList({
-        page:this.pageNum,
-        pageSize:this.pageSize,
-      }).then((list) => {
+      getList({
+        page: this.pageNum,
+        pageSize: this.pageSize
+      }).then(list => {
         this.list = list
       })
       // this.list = [
