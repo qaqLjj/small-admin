@@ -161,6 +161,7 @@ export default {
         pageSize: this.pageSize
       }).then(list => {
         this.list = list
+        console.log(this.list)
       })
       // this.list = [
       //   {
