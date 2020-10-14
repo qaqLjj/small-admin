@@ -1,16 +1,16 @@
 import request from '@/utils/request'
 
-export function getList(params) {
+export function getList(data) {
   return request({
-    url: 'api/getList',
-    method: 'get',
-    params
+    url: 'http://localhost:8080/student/search',
+    method: 'post',
+    data
   })
 }
 
 export function add(data) {
   return request({
-    url: 'api/add',
+    url: 'http://localhost:8080/student/add',
     method: 'post',
     data
   })

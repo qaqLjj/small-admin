@@ -8,9 +8,19 @@
         type="index"
         width="50"
       />
-      <el-table-column prop="date" label="日期" width="180" />
-      <el-table-column prop="name" label="姓名" width="180" />
+      <el-table-column prop="name" label="姓名" width="80" />
+      <el-table-column prop="phone" label="电话" width="180" />
+      <el-table-column prop="rEye" label="右眼裸眼" width="180" />
+      <el-table-column prop="lEye" label="左眼裸眼" width="180" />
+      <el-table-column prop="rEyeRef" label="右眼屈光" width="180" />
+      <el-table-column prop="lEyeRef" label="左眼屈光" width="180" />
+
       <el-table-column prop="address" label="地址" />
+      <el-table-column class-name="status-col" label="Status" width="110" align="center">
+        <template slot-scope="scope">
+          <el-tag :type="scope.row.status | statusFilter">{{ scope.row.status }}</el-tag>
+        </template>
+      </el-table-column>
       <el-table-column label="操作">
 
         <template slot-scope="scope">
@@ -35,24 +45,35 @@
 
     <el-dialog :title="title" :visible.sync="dialogFormVisible">
       <el-form :model="form">
-        <el-form-item label="字段1" :label-width="formLabelWidth">
+        <el-form-item label="姓名" :label-width="formLabelWidth">
           <el-input v-model="form.name" autocomplete="off" />
         </el-form-item>
-        <el-form-item label="字段2" :label-width="formLabelWidth">
-          <el-input v-model="form.name" autocomplete="off" />
+        <el-form-item label="电话" :label-width="formLabelWidth">
+          <el-input v-model="form.phone" autocomplete="off" />
         </el-form-item>
-        <el-form-item label="字段3" :label-width="formLabelWidth">
-          <el-input v-model="form.name" autocomplete="off" />
+        <el-form-item label="右眼裸眼" :label-width="formLabelWidth">
+          <el-input v-model="form.rEye" autocomplete="off" />
         </el-form-item>
-        <el-form-item label="字段4" :label-width="formLabelWidth">
-          <el-input v-model="form.name" autocomplete="off" />
+        <el-form-item label="左眼裸眼" :label-width="formLabelWidth">
+          <el-input v-model="form.lEye" autocomplete="off" />
         </el-form-item>
-        <el-form-item label="字段5" :label-width="formLabelWidth">
+        <el-form-item label="右眼屈光" :label-width="formLabelWidth">
+          <el-input v-model="form.rEyeRef" autocomplete="off" />
+        </el-form-item>
+        <el-form-item label="左眼屈光" :label-width="formLabelWidth">
+          <el-input v-model="form.lEyeRef" autocomplete="off" />
+        </el-form-item>
+        <el-form-item label="是否到店" :label-width="formLabelWidth">
           <el-select v-model="form.region" placeholder="字段5">
             <el-option label="字段5-1" value="5-1" />
             <el-option label="字段5-2" value="5-2" />
           </el-select>
         </el-form-item>
+        <el-table-column class-name="status-col" label="是否到店" width="110" align="center">
+        <template slot-scope="scope">
+          <el-tag :type="form.status | statusFilter">{{ form.status }}</el-tag>
+        </template>
+      </el-table-column>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
@@ -65,9 +86,18 @@
 
 <script>
 // todo 在 src/api/table 里定义 getList 方法
-// import { getList } from '@/api/table'
+import { getList } from '@/api/table'
 
 export default {
+  filters: {
+    statusFilter(status) {
+      const statusMap = {
+        "到店": 'success',
+        "未到": 'danger'
+      }
+      return statusMap[status]
+    }
+  },
   data() {
     return {
       list: [],
@@ -105,51 +135,26 @@ export default {
       this.dialogFormVisible = true
     },
     getList() {
-      // this.list = getList().then((list) => {
-      //   this.list = list
-      // })
-      this.list = [
-        {
-          date: '2020-1014',
-          name: 'test',
-          address: '测试地址'
-        },
-        {
-          date: '2020-1014',
-          name: 'test',
-          address: '测试地址'
-        },
-        {
-          date: '2020-1014',
-          name: 'test',
-          address: '测试地址'
-        },
-        {
-          date: '2020-1014',
-          name: 'test',
-          address: '测试地址'
-        },
-        {
-          date: '2020-1014',
-          name: 'test',
-          address: '测试地址'
-        },
-        {
-          date: '2020-1014',
-          name: 'test',
-          address: '测试地址'
-        },
-        {
-          date: '2020-1014',
-          name: 'test',
-          address: '测试地址'
-        },
-        {
-          date: '2020-1014',
-          name: 'test',
-          address: '测试地址'
-        }
-      ]
+      this.list = getList({
+        page:this.pageNum,
+        pageSize:this.pageSize,
+      }).then((list) => {
+        this.list = list
+      })
+      // this.list = [
+      //   {
+      //     date: '2020-1014',
+      //     name: 'test',
+      //     address: '测试地址',
+      //     status:"到店"
+      //   },
+      //   {
+      //     date: '2020-1014',
+      //     name: 'test',
+      //     address: '测试地址',
+      //     status:"未到"
+      //   }
+      // ]
     }
   }
 }
