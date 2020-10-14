@@ -1,6 +1,6 @@
 module.exports = {
 
-  title: 'Vue Admin Template',
+  title: 'src/settings.js里改名字',
 
   /**
    * @type {boolean} true | false
