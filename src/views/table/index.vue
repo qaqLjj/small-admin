@@ -121,7 +121,7 @@ export default {
       form: {},
       title: '',
       searchValue: '',
-      formLabelWidth: '89px',
+      formLabelWidth: 'px',
       dialogFormVisible: false
     }
   },
@@ -130,7 +130,7 @@ export default {
   },
   methods: {
     search() {
-      // getList()
+      this.getList()
     },
     reset() {
       this.searchValue = ''
