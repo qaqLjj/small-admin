@@ -1,5 +1,15 @@
 <template>
   <div class="app-container">
+    <div class="searchWrap">
+      <el-input v-model="searchValue" placeholder="输入关键词即可搜索" />
+      <el-button type="text" class="searchBtn" @click="search">
+        搜索
+      </el-button>
+      <el-button type="text" class="searchBtn" @click="searchValue = ''">
+        清空
+      </el-button>
+      <el-button type="text" class="searchBtn" @click="reset"> 重置 </el-button>
+    </div>
     <el-button type="primary" class="addBtn" @click="addItem">
       添加数据
     </el-button>
@@ -22,11 +32,8 @@
         </template>
       </el-table-column>
       <el-table-column label="操作">
-
         <template slot-scope="scope">
-          <el-button @click="editItem(scope.row)">
-            编辑
-          </el-button>
+          <el-button @click="editItem(scope.row)"> 编辑 </el-button>
           <el-button type="danger" @click="deleteItem(scope.row)">
             删除
           </el-button>
@@ -43,7 +50,7 @@
       @current-change="handleCurrentChange"
     />
 
-    <el-dialog :title="title" :visible.sync="dialogFormVisible">
+    <el-dialog :title="title" :visible.sync="dialogFormVisible" width="700px">
       <el-form :model="form">
         <el-form-item label="姓名" :label-width="formLabelWidth">
           <el-input v-model="form.name" autocomplete="off" />
@@ -63,7 +70,12 @@
         <el-form-item label="左眼屈光" :label-width="formLabelWidth">
           <el-input v-model="form.lEyeRef" autocomplete="off" />
         </el-form-item>
+        <el-form-item label="字段5" :label-width="formLabelWidth">
+          <el-checkbox v-model="form.filed5">单选</el-checkbox>
+          <el-checkbox v-model="form.filed5">单选</el-checkbox>
+        </el-form-item>
         <el-form-item label="是否到店" :label-width="formLabelWidth">
+
           <el-select v-model="form.region" placeholder="字段5">
             <el-option label="字段5-1" value="5-1" />
             <el-option label="字段5-2" value="5-2" />
@@ -77,11 +89,13 @@
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取 消</el-button>
-        <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+        <el-button
+          type="primary"
+          @click="dialogFormVisible = false"
+        >确 定</el-button>
       </div>
     </el-dialog>
   </div>
-
 </template>
 
 <script>
@@ -92,8 +106,8 @@ export default {
   filters: {
     statusFilter(status) {
       const statusMap = {
-        "到店": 'success',
-        "未到": 'danger'
+        "1": 'success',
+        "0": 'danger'
       }
       return statusMap[status]
     }
@@ -105,7 +119,9 @@ export default {
       pageSize: 20,
       totalPage: 100,
       form: {},
-      formLabelWidth: '200',
+      title: '',
+      searchValue: '',
+      formLabelWidth: '89px',
       dialogFormVisible: false
     }
   },
@@ -113,6 +129,13 @@ export default {
     this.getList()
   },
   methods: {
+    search() {
+      // getList()
+    },
+    reset() {
+      this.searchValue = ''
+      // getList()
+    },
     handleCurrentChange() {
       // 处理页码切换
     },
@@ -164,10 +187,29 @@ export default {
   float: right;
 }
 .table {
-  margin-top: 50px;
+  margin-top: 70px;
 }
 .pag {
   margin-top: 50px;
   text-align: center;
+}
+
+.searchWrap {
+  .el-input {
+    width: 250px;
+    margin-right: 10px;
+  }
+  float: left;
+  width: 400px;
+}
+.el-form-item {
+  display: flex;
+  padding-right: 20px;
+  ::v-deep .el-form-item__label {
+    text-align: right;
+  }
+  ::v-deep .el-form-item__content{
+    flex: 1;
+  }
 }
 </style>
