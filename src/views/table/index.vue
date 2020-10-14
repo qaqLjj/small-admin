@@ -33,7 +33,7 @@
       @current-change="handleCurrentChange"
     />
 
-    <el-dialog title="编辑信息" :visible.sync="dialogFormVisible">
+    <el-dialog :title="title" :visible.sync="dialogFormVisible">
       <el-form :model="form">
         <el-form-item label="字段1" :label-width="formLabelWidth">
           <el-input v-model="form.name" autocomplete="off" />
@@ -94,9 +94,11 @@ export default {
       }
     },
     addItem() {
+      this.title = '添加'
       this.dialogFormVisible = true
     },
     editItem(row) {
+      this.title = '编辑'
       console.log(row)
       // 要请求一下接口回显数据
 
