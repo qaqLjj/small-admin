@@ -126,22 +126,22 @@
 
         <el-col span="12">
           <el-form-item label="右眼裸眼" :label-width="formLabelWidth">
-            <el-input type="number" v-model.number="vision.rEye"  placeholder="请输入数字" autocomplete="off" />
+            <el-input type="number" v-model.Number="vision.rEye"  placeholder="请输入数字" autocomplete="off" />
           </el-form-item>
         </el-col>
         <el-col span="12">
           <el-form-item label="左眼裸眼" :label-width="formLabelWidth">
-            <el-input type="number" v-model.number="vision.lEye"  placeholder="请输入数字" autocomplete="off" />
+            <el-input type="number" v-model.Number="vision.lEye"  placeholder="请输入数字" autocomplete="off" />
           </el-form-item>
         </el-col>
         <el-col span="12">
           <el-form-item label="右眼屈光" :label-width="formLabelWidth">
-            <el-input type="number" v-model.number="vision.rEyeRef"  placeholder="请输入数字" autocomplete="off" />
+            <el-input type="number" v-model.Number="vision.rEyeRef"  placeholder="请输入数字" autocomplete="off" />
           </el-form-item>
         </el-col>
         <el-col span="12">
           <el-form-item label="左眼屈光" :span="24">
-            <el-input type="number" v-model.number="vision.lEyeRef"  placeholder="请输入数字" autocomplete="off" />
+            <el-input type="number" v-model.Number="vision.lEyeRef"  placeholder="请输入数字" autocomplete="off" />
           </el-form-item>
         </el-col>
 
@@ -214,10 +214,10 @@
           "sex": 0,
         },
         vision: {
-          "rEye": 2.0,
-          "lEye": 2.0,
-          "rEyeRef": 2.0,
-          "lEyeRef": 2.0
+          "rEye": "2.0",
+          "lEye": "2.0",
+          "rEyeRef": "2.0",
+          "lEyeRef": "2.0"
         },
         school: [{
           value: '白沙中学',
