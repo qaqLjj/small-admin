@@ -33,7 +33,7 @@
       <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button type="primary" @click="editStudentItem(scope.row)">学生详情</el-button>
-          <el-button @click="editStudentItem(scope.row)">编辑用户</el-button>
+          <el-button @click="editStudentItem(scope.row)">编辑</el-button>
           <el-button @click="addStudentVision(scope.row)">添加视力信息</el-button>
           <el-button type="danger" @click="deleteItem(scope.row)">删除</el-button>
         </template>
@@ -160,6 +160,7 @@
     getStudentList,
     getStudentById,
     addStudent,
+    deleteStudent,
     addVision
   } from '@/api/table'
 
@@ -263,6 +264,11 @@
         const res = this.$confirm('确认删除吗?')
         if (res) {
           // 在这里写删除的逻辑
+          deleteStudent({"id":row.id}).then((data) => {
+            if (data.code == 200) {
+              this.getStudentList()
+            }
+          })
           console.log(row)
         }
       },

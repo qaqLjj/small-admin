@@ -18,6 +18,15 @@ export function getStudentById(params) {
 }
 
 // @post
+export function deleteStudent(params) {
+  return request({
+    url: 'http://localhost:8080/student/delete',
+    method: 'delete',
+    params
+  })
+}
+
+// @post
 export function addStudent(data) {
   return request({
     url: 'http://localhost:8080/student/insert',
