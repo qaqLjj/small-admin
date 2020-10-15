@@ -150,6 +150,7 @@ import {
   getStudentList,
   getStudentById,
   addStudent,
+  deleteStudent,
   addVision
 } from '@/api/table'
 
