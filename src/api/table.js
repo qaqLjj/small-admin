@@ -29,7 +29,7 @@ export function addStudent(data) {
 // @post
 export function addVision(data) {
   return request({
-    url: 'http://localhost:8080/vision/insert',
+    url: 'api/vision/insert',
     method: 'post',
     data
   })

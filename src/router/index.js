@@ -31,11 +31,6 @@ import Layout from '@/layout'
  * all roles can be accessed
  */
 export const constantRoutes = [
-  // {
-  //   path: '/login',
-  //   component: () => import('@/views/login/index'),
-  //   hidden: true
-  // },
 
   {
     path: '/404',
@@ -47,12 +42,14 @@ export const constantRoutes = [
     path: '/',
     component: Layout,
     redirect: '/dashboard',
-    children: [{
-      path: 'dashboard',
-      name: 'Dashboard',
-      component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
-    }]
+    children: [
+      {
+        path: 'dashboard',
+        name: 'Dashboard',
+        component: () => import('@/views/dashboard'),
+        meta: { title: 'Dashboard', icon: 'dashboard' }
+      }
+    ]
   },
 
   {
@@ -70,6 +67,29 @@ export const constantRoutes = [
       }
     ]
   },
+
+  {
+    path: '/default',
+    component: Layout,
+    redirect: '/table',
+    meta: { title: '默认分类', icon: 'el-icon-s-help' },
+    children: [
+      {
+        path: 'table',
+        name: 'table',
+        component: () => import('@/views/table/index'),
+        meta: { title: '数据统计', icon: 'table' }
+      },
+      {
+        path: 'detail',
+        name: 'detail',
+        component: () => import('@/views/detail'),
+        meta: { title: '学生详情', icon: 'dashboard' },
+        hidden: true
+      }],
+    hidden: true
+  },
+
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
