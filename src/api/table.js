@@ -43,3 +43,22 @@ export function addVision(data) {
     data
   })
 }
+
+// @post
+export function getVision(params) {
+  return request({
+    url: 'http://localhost:8080/vision/searchBySId',
+    method: 'get',
+    params
+  })
+}
+
+
+// @post
+export function deleteVision(params) {
+  return request({
+    url: 'http://localhost:8080/vision/delete',
+    method: 'delete',
+    params
+  })
+}
