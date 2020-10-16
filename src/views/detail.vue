@@ -80,7 +80,7 @@
       <el-pagination class="pag" layout="prev, pager, next,jumper" :total="totalPage" :page-size="20" :current-page.sync="pageNum" @current-change="handleCurrentChange" />
     </div>
     <!-- 视力信息表 -->
-    <el-dialog :title="title" :visible.sync="visionFormVisible" width="700px">
+    <el-dialog :title="title" :visible.sync="visionFormVisible" width="700px" :close-on-click-modal="false">
       <el-form :model="form" :rules="rules" ref="form">
         <el-col span="12">
           <el-form-item label="右眼裸眼" :label-width="formLabelWidth">

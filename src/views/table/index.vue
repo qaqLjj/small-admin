@@ -114,7 +114,7 @@
 
 
     <!-- 视力信息表 -->
-    <el-dialog :title="title" :visible.sync="visionFormVisible" width="700px">
+    <el-dialog :title="title" :visible.sync="visionFormVisible" width="700px" :close-on-click-modal="false">
       <el-form :model="form" :rules="rules" ref="form">
         <el-col span="8">
           <el-form-item label="姓名:" :label-width="formLabelWidth" disabled>
