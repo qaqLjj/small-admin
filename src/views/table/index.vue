@@ -2,7 +2,7 @@
   <div class="app-container">
     <el-row class="searchWrap" :gutter="20">
       <el-col
-        :span="6"
+        :span="5"
       ><el-input
         v-model="searchValue.name"
         placeholder="请输入姓名或者电话"
@@ -11,7 +11,7 @@
         :span="4"
       ><el-select
         v-model="searchValue.school"
-        placeholder="请选择"
+        placeholder="请选择学校"
         :label-width="formLabelWidth"
       >
         <el-option
@@ -24,7 +24,7 @@
         :span="4"
       ><el-select
         v-model="searchValue.sGroup"
-        placeholder="请选择"
+        placeholder="请选择年级"
         :label-width="formLabelWidth"
       >
         <el-option
@@ -33,10 +33,10 @@
           :label="item.label"
           :value="item.value"
         /> </el-select></el-col>
-      <el-col :span="4">
+      <el-col :span="5">
         <el-select
           v-model="searchValue.status"
-          placeholder="请选择"
+          placeholder="请选择是否到店"
           :label-width="formLabelWidth"
         >
           <el-option
@@ -45,20 +45,25 @@
             :label="item.label"
             :value="item.value"
           /> </el-select></el-col>
-      <el-col :span="4"><div class="grid-content bg-purple-dark" /></el-col>
-
-      <el-button
-        type="success"
-        round
-        class="searchBtn"
-        size="mini"
-        @click="search"
-      >
-        搜索
-      </el-button>
-      <el-button type="info" round class="searchBtn" size="mini" @click="reset">
-        重置
-      </el-button>
+      <el-col :span="6">
+        <el-button
+          type="success"
+          round
+          class="searchBtn"
+          size="mini"
+          @click="search"
+        >
+          搜索
+        </el-button>
+        <el-button
+          type="info"
+          round
+          class="searchBtn"
+          size="mini"
+          @click="reset"
+        >
+          重置
+        </el-button></el-col>
     </el-row>
 
     <el-button type="primary" class="addBtn" @click="addStudentItem">
@@ -203,18 +208,35 @@
     </el-dialog>
 
     <!-- 视力信息表 -->
-    <el-dialog :title="title" :visible.sync="visionFormVisible" width="700px" :close-on-click-modal="false">
+    <el-dialog
+      :title="title"
+      :visible.sync="visionFormVisible"
+      width="700px"
+      :close-on-click-modal="false"
+    >
       <el-form ref="form" :model="form" :rules="rules">
         <el-col span="8">
-          <el-dialog :title="title" :visible.sync="visionFormVisible" width="700px">
+          <el-dialog
+            :title="title"
+            :visible.sync="visionFormVisible"
+            width="700px"
+          >
             <el-form ref="form" :model="form" :rules="rules">
               <el-col :span="8">
-                <el-form-item label="姓名:" :label-width="formLabelWidth" disabled>
+                <el-form-item
+                  label="姓名:"
+                  :label-width="formLabelWidth"
+                  disabled
+                >
                   <el-input v-model="form.name" autocomplete="off" disabled />
                 </el-form-item>
               </el-col>
               <el-col :span="8">
-                <el-form-item label="性别:" :label-width="formLabelWidth" disabled>
+                <el-form-item
+                  label="性别:"
+                  :label-width="formLabelWidth"
+                  disabled
+                >
                   <el-tag :type="form.sex | sexFilter">{{
                     form.sex == 0 ? "男" : "女"
                   }}</el-tag>
@@ -346,7 +368,8 @@
               <el-button type="primary" @click="addVisionInfo">确 定</el-button>
             </div>
           </el-dialog>
-        </el-col></el-form></el-dialog></div>
+        </el-col></el-form></el-dialog>
+  </div>
 </template>
 
 <script>
@@ -615,7 +638,7 @@ export default {
   }
 
   float: left;
-  width: 800px;
+  width: 900px;
 
   .searchBtn {
     margin-top: 5px;
