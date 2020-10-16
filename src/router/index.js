@@ -41,41 +41,23 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/dashboard',
+    redirect: '/index',
     children: [
       {
-        path: 'dashboard',
-        name: 'Dashboard',
+        path: 'index',
+        name: 'dashboard',
         component: () => import('@/views/dashboard'),
-        meta: { title: 'Dashboard', icon: 'dashboard' }
+        meta: { title: '看板', icon: 'dashboard' }
       }
     ]
   },
-
   {
-    path: '/default',
+    path: '/table',
     component: Layout,
-    redirect: '/default',
-    name: 'Example',
-    meta: { title: '默认分类', icon: 'el-icon-s-help' },
+    redirect: '/table/index',
     children: [
       {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: '信息管理', icon: 'table' }
-      }
-    ]
-  },
-
-  {
-    path: '/default',
-    component: Layout,
-    redirect: '/default/table',
-    meta: { title: '信息管理', icon: 'el-icon-s-help' },
-    children: [
-      {
-        path: 'table',
+        path: 'index',
         name: 'table',
         component: () => import('@/views/table/index'),
         meta: { title: '信息管理', icon: 'table' }
@@ -84,13 +66,11 @@ export const constantRoutes = [
         path: 'detail',
         name: 'detail',
         component: () => import('@/views/detail'),
-        meta: { title: '学生详情', icon: 'dashboard' },
+        meta: { title: '学生详情' },
         hidden: true
-      }],
-    hidden: true
+      }
+    ]
   },
-
-  // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
 

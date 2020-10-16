@@ -1,6 +1,6 @@
 module.exports = {
 
-  title: 'src/settings.js里改名字',
+  title: '视力信息管理',
 
   /**
    * @type {boolean} true | false

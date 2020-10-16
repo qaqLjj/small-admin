@@ -33,6 +33,7 @@ export default {
     routes() {
       return this.$router.options.routes
     },
+
     activeMenu() {
       const route = this.$route
       const { meta, path } = route
@@ -51,6 +52,9 @@ export default {
     isCollapse() {
       return !this.sidebar.opened
     }
+  },
+  created() {
+    console.log(this.$router.options.routes)
   }
 }
 </script>
