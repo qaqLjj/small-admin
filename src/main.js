@@ -13,6 +13,16 @@ import router from './router'
 import '@/icons' // icon
 // import '@/permission' // permission control
 
+// echarts
+import ECharts from 'vue-echarts' // 在 webpack 环境下指向 components/ECharts.vue
+
+// 手动引入 ECharts 各模块来减小打包体积
+import 'echarts/lib/chart/bar'
+import 'echarts/lib/component/tooltip'
+
+// 注册组件后即可使用
+Vue.component('v-chart', ECharts)
+
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api
